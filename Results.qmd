@@ -1,0 +1,180 @@
+---
+output: bookdown::html_document2
+---
+
+# Results
+
+```{python}
+import pandas as pd
+
+data = pd.read_csv(r"C:\Project for IAA\N1\clustering_results.csv")
+```
+
+Now we can look at the variables in the data to see what the different clusters
+look like.
+
+```{python}
+# Count how many unique counties are in each Cluster Label
+county_counts = data.groupby('Cluster Labels')['County'].nunique()
+
+# Create a bar plot to visualize the counts of counties in each cluster
+plt.figure(figsize=(10, 6))
+plt.bar(county_counts.index, county_counts.values, color='skyblue')
+
+plt.xticks(np.arange(0, 10), rotation=0)  # Adjust as needed
+
+# Title and labels
+plt.title('Count of Counties by Cluster Groups')
+plt.xlabel('Cluster Group Labels')
+plt.ylabel('Number of Unique Counties')
+
+# Show the plot
+plt.show()
+```
+
+Here we see a raw count for how many counties are in each cluster group.
+The majority of the counties are in cluster 6. This can be expected due to the
+counties being tightly packed when we did our cluster analysis.
+
+```{python}
+#These two counties have seen huge increases in low access to stores. Since this
+#would be a place recommended for N1 to deploy its resources, I subset the
+#daa to exclude them from the data. This will even out the skewness in a 
+#couple of the bar charts making it easier on the eyes.
+
+data = data[~((data['State'] == 'IL') & (data['County'] == 'Putnam'))]
+data = data[~((data['State'] == 'TX') & (data['County'] == 'Stonewall'))]
+
+
+
+
+float_columns = data.select_dtypes(include=['float64']).columns
+
+
+# Loop through each 'float64' column in 'data'
+for column in float_columns:
+    plt.figure(figsize=(10, 6))
+    
+    # For each cluster, calculate the median of the variable
+    cluster_medians = data.groupby('Cluster Labels')[column].median()
+    
+    # Create a bar plot for the column, grouped by 'Cluster Labels'
+    plt.bar(cluster_medians.index, cluster_medians.values, color='lightcoral')
+    
+    plt.xticks(np.arange(0, 10), rotation=0)  # Adjust as needed
+
+    # Title and labels
+    plt.title(f'Median {column} by Cluster Labels')
+    plt.xlabel('Cluster Labels')
+    plt.ylabel(f'Median {column}')
+    
+    # Show the plot
+    plt.show()
+```
+
+From these graphs, there are a few key insights that should be recognized:
+1. In the PCH_LACCESS_POP_10_15 graph, there is a huge increase in the 
+  percentage of the population that have low access to stores in the second
+  group of counties. After some digging, there are 5 counties in this group.
+  4 of them are in Hawaii and the other one is in Alaska. If N1 has the
+  resources, these 5 counties would be great candidates for N1 to help with
+  food access challenges.
+  
+  The second insight from this graph is the increase in group 8. This is a
+  smaller group of counties that are seeing an increase in the percentage
+  of the population that is struggling to get food access. These counties are
+  also ideal candidates for N1 to utilize its resources to aid in people getting
+  better access to food.
+  
+  Utilizing the graph that shows the distribution of the Black population across
+  the groups, we see that the majority of this group is within the counties
+  in group 8. If N1 uses it resources to help these communities with
+  increasing access to food, they should expect the majority of these
+  populations to be Black. This knowledge will help N1 tailor their
+  programs to these communities.
+  
+2. In the PCH_LACCESS_HHNV_10_15 graph, we see group 9 has the biggest
+  percentage of people that have low access to food and don't have access to
+  a car. This is vital information if N1 decides to deploy its resources
+  to these communities. When creating a program to increase the access to food,
+  N1 should consider having a option where they help deliver food to households
+  or setting up food pantries within walking distances in these communities to 
+  give them better access to food.
+  
+  Looking into the White, Hispanic, and Multiracial graphs, we see see these 
+  ethnic groups strongly represent group 9. If N1 decides to deploy resources
+  to help these communities, they should expect these populations to be White,
+  Hispanic, or Multiracial. 
+
+
+Lastly, I am going to recreate the graphs I mentioned above to get them looking
+nicer and presentation quality.
+
+PCH_LACESS_HHNV_10_15 Plot
+
+```{python}
+# Plot for PCH_LACESS_HHNV_10_15
+plt.figure(figsize=(10, 6))
+
+# Calculate the median for each cluster
+cluster_medians = data.groupby('Cluster Labels')['PCH_LACESS_HHNV_10_15'].median()
+
+# Define color list: grey for bars 1-8, sky blue for bar 9
+colors = ['grey' if i != 9 else 'skyblue' for i in cluster_medians.index]
+
+# Create the bar plot with the color list
+plt.bar(cluster_medians.index, cluster_medians.values, color=colors)
+
+# Customize the x-ticks and rotation
+plt.xticks(np.arange(0, 10), rotation=0)  # Adjust as needed
+
+# Title and labels
+plt.title('Median 2010 to 2015 People with Low Access and No Car')
+plt.xlabel('Group Label')
+plt.ylabel('% Change')
+
+# Show the plot
+plt.show()
+plt.clf()
+
+
+```
+
+PCH_LACCESS_POP_10_15 Plot
+
+```{python}
+# Plot for PCH_LACESS_HHNV_10_15
+plt.figure(figsize=(10, 6))
+
+# Calculate the median for each cluster
+cluster_medians = data.groupby('Cluster Labels')['PCH_LACCESS_POP_10_15'].median()
+
+# Define color list: grey for bars 1-8, sky blue for bar 9
+colors = ['grey' if i != 8 else 'skyblue' for i in cluster_medians.index]
+
+# Create the bar plot with the color list
+plt.bar(cluster_medians.index, cluster_medians.values, color=colors)
+
+# Add a horizontal black line at y=0
+plt.axhline(y=0, color='black', linewidth=2)
+
+# Customize the x-ticks and rotation
+plt.xticks(np.arange(0, 10), rotation=0)  # Adjust as needed
+
+# Title and labels
+plt.title('Median 2010 to 2015 Population with Low Access to Stores')
+plt.xlabel('Group Label')
+plt.ylabel('% Change')
+
+# Show the plot
+plt.show()
+plt.clf()
+
+```
+
+I am going to save the data so I can upload it into Tableau.
+
+```{python}
+data.to_csv('data_tableau.csv',index=False)
+```
+
