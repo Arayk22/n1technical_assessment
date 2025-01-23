@@ -6,6 +6,8 @@ output: bookdown::html_document2
 
 ```{python}
 import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
 
 data = pd.read_csv(r"C:\Project for IAA\N1\clustering_results.csv")
 ```
@@ -113,8 +115,10 @@ nicer and presentation quality.
 PCH_LACESS_HHNV_10_15 Plot
 
 ```{python}
-# Plot for PCH_LACESS_HHNV_10_15
+# Plot for PCH_LACCESS_HHNV_10_15
 plt.figure(figsize=(10, 6))
+
+data.rename(columns={"PCH_LACCESS_HHNV_10_15": "PCH_LACESS_HHNV_10_15"}, inplace=True)
 
 # Calculate the median for each cluster
 cluster_medians = data.groupby('Cluster Labels')['PCH_LACESS_HHNV_10_15'].median()

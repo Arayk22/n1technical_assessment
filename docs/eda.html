@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2 EDA | N1 Technical Assessment</title>
+  <meta name="description" content="2 EDA | N1 Technical Assessment" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2 EDA | N1 Technical Assessment" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2 EDA | N1 Technical Assessment" />
+  
+  
+  
+
+<meta name="author" content="Austin Kolvek" />
+
+
+<meta name="date" content="2025-01-23" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="clustering.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">N1 Technical Assessment</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Assessment Objective</a></li>
+<li class="chapter" data-level="2" data-path="eda.html"><a href="eda.html"><i class="fa fa-check"></i><b>2</b> EDA</a></li>
+<li class="chapter" data-level="3" data-path="clustering.html"><a href="clustering.html"><i class="fa fa-check"></i><b>3</b> Clustering</a></li>
+<li class="chapter" data-level="4" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>4</b> Results</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">N1 Technical Assessment</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="eda" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">2</span> EDA<a href="eda.html#eda" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Lets bring in the data to get a sense for what we are working with.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="eda.html#cb1-1" tabindex="-1"></a><span class="im">import</span> sqlite3</span>
+<span id="cb1-2"><a href="eda.html#cb1-2" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="eda.html#cb1-3" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-4"><a href="eda.html#cb1-4" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-5"><a href="eda.html#cb1-5" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-6"><a href="eda.html#cb1-6" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="eda.html#cb1-7" tabindex="-1"></a><span class="co">#Path to the database</span></span>
+<span id="cb1-8"><a href="eda.html#cb1-8" tabindex="-1"></a>db_path <span class="op">=</span> <span class="vs">r&quot;C:\Users\austi\OneDrive\Documents\Interviews\N1\Technical Assessment\challenge.db&quot;</span></span>
+<span id="cb1-9"><a href="eda.html#cb1-9" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="eda.html#cb1-10" tabindex="-1"></a>connection <span class="op">=</span> sqlite3.<span class="ex">connect</span>(db_path)</span>
+<span id="cb1-11"><a href="eda.html#cb1-11" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="eda.html#cb1-12" tabindex="-1"></a>query <span class="op">=</span> <span class="st">&quot;select * from access&quot;</span></span>
+<span id="cb1-13"><a href="eda.html#cb1-13" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="eda.html#cb1-14" tabindex="-1"></a>data <span class="op">=</span> pd.read_sql_query(query,connection)</span>
+<span id="cb1-15"><a href="eda.html#cb1-15" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="eda.html#cb1-16" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="eda.html#cb1-17" tabindex="-1"></a>connection.close()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-21-1.png" width="700" /></p>
+<p>I am going to look through the data and get an understanding for how it is
+structured and what analysis can be performed.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="eda.html#cb2-1" tabindex="-1"></a><span class="bu">print</span>(data.info())</span></code></pre></div>
+<pre><code>## &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+## RangeIndex: 3143 entries, 0 to 3142
+## Data columns (total 45 columns):
+##  #   Column                     Non-Null Count  Dtype  
+## ---  ------                     --------------  -----  
+##  0   index                      3143 non-null   int64  
+##  1   FIPS                       3143 non-null   int64  
+##  2   State                      3143 non-null   object 
+##  3   County                     3143 non-null   object 
+##  4   LACCESS_POP10              3143 non-null   float64
+##  5   LACCESS_POP15              3124 non-null   float64
+##  6   PCH_LACCESS_POP_10_15      3117 non-null   float64
+##  7   PCT_LACCESS_POP10          3143 non-null   float64
+##  8   PCT_LACCESS_POP15          3124 non-null   float64
+##  9   LACCESS_LOWI10             3143 non-null   float64
+##  10  LACCESS_LOWI15             3123 non-null   float64
+##  11  PCH_LACCESS_LOWI_10_15     3115 non-null   float64
+##  12  PCT_LACCESS_LOWI10         3143 non-null   float64
+##  13  PCT_LACCESS_LOWI15         3123 non-null   float64
+##  14  LACCESS_HHNV10             3143 non-null   float64
+##  15  LACCESS_HHNV15             3140 non-null   float64
+##  16  PCH_LACCESS_HHNV_10_15     3129 non-null   float64
+##  17  PCT_LACCESS_HHNV10         3143 non-null   float64
+##  18  PCT_LACCESS_HHNV15         3140 non-null   float64
+##  19  LACCESS_SNAP15             3123 non-null   float64
+##  20  PCT_LACCESS_SNAP15         3123 non-null   float64
+##  21  LACCESS_CHILD10            3143 non-null   float64
+##  22  LACCESS_CHILD15            3124 non-null   float64
+##  23  LACCESS_CHILD_10_15        3115 non-null   float64
+##  24  PCT_LACCESS_CHILD10        3143 non-null   float64
+##  25  PCT_LACCESS_CHILD15        3124 non-null   float64
+##  26  LACCESS_SENIORS10          3143 non-null   float64
+##  27  LACCESS_SENIORS15          3124 non-null   float64
+##  28  PCH_LACCESS_SENIORS_10_15  3117 non-null   float64
+##  29  PCT_LACCESS_SENIORS10      3143 non-null   float64
+##  30  PCT_LACCESS_SENIORS15      3124 non-null   float64
+##  31  LACCESS_WHITE15            3124 non-null   float64
+##  32  PCT_LACCESS_WHITE15        3124 non-null   float64
+##  33  LACCESS_BLACK15            3124 non-null   float64
+##  34  PCT_LACCESS_BLACK15        3124 non-null   float64
+##  35  LACCESS_HISP15             3124 non-null   float64
+##  36  PCT_LACCESS_HISP15         3124 non-null   float64
+##  37  LACCESS_NHASIAN15          3124 non-null   float64
+##  38  PCT_LACCESS_NHASIAN15      3124 non-null   float64
+##  39  LACCESS_NHNA15             3124 non-null   float64
+##  40  PCT_LACCESS_NHNA15         3124 non-null   float64
+##  41  LACCESS_NHPI15             3124 non-null   float64
+##  42  PCT_LACCESS_NHPI15         3124 non-null   float64
+##  43  LACCESS_MULTIR15           3124 non-null   float64
+##  44  PCT_LACCESS_MULTIR15       3124 non-null   float64
+## dtypes: float64(41), int64(2), object(2)
+## memory usage: 1.1+ MB
+## None</code></pre>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-22-3.png" width="700" /></p>
+<p>There seems to be two types of variables, raw count and percentages. I am going
+to drop out raw counts because we are going to want to see how percentages
+of populations vary across the US. This will put all of the counties onto the
+same playing field.</p>
+<p>The other thing I have noticed is there seems to be data from 2010, 2015, and
+a relative difference between the two years. Where I can, I am going to drop
+out the single 2010 and 2015 years because I am more interested in the relative
+change. This will give me a sense for how that specific area has changed over
+time.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="eda.html#cb4-1" tabindex="-1"></a><span class="co">#Change the LACCESS_CHILD_10_15 variable to keep up with the other names</span></span>
+<span id="cb4-2"><a href="eda.html#cb4-2" tabindex="-1"></a>data.rename(columns<span class="op">=</span>{<span class="st">&#39;LACCESS_CHILD_10_15&#39;</span>: <span class="st">&#39;PCH_LACCESS_CHILD_10_15&#39;</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb4-3"><a href="eda.html#cb4-3" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="eda.html#cb4-4" tabindex="-1"></a>data <span class="op">=</span> data.loc[:, <span class="op">~</span>data.columns.<span class="bu">str</span>.startswith(<span class="st">&quot;LACCESS&quot;</span>)]</span>
+<span id="cb4-5"><a href="eda.html#cb4-5" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="eda.html#cb4-6" tabindex="-1"></a>vars_drop <span class="op">=</span> <span class="bu">list</span> ([<span class="st">&#39;index&#39;</span>,<span class="st">&#39;PCT_LACCESS_POP10&#39;</span>,<span class="st">&#39;PCT_LACCESS_POP15&#39;</span>,<span class="st">&#39;PCT_LACCESS_LOWI10&#39;</span>,</span>
+<span id="cb4-7"><a href="eda.html#cb4-7" tabindex="-1"></a><span class="st">&#39;PCT_LACCESS_LOWI15&#39;</span>,<span class="st">&#39;PCT_LACCESS_HHNV10&#39;</span>,<span class="st">&#39;PCT_LACCESS_HHNV15&#39;</span>,</span>
+<span id="cb4-8"><a href="eda.html#cb4-8" tabindex="-1"></a><span class="st">&#39;PCT_LACCESS_CHILD10&#39;</span>,<span class="st">&#39;PCT_LACCESS_CHILD15&#39;</span>,<span class="st">&#39;PCT_LACCESS_SENIORS10&#39;</span>,</span>
+<span id="cb4-9"><a href="eda.html#cb4-9" tabindex="-1"></a><span class="st">&#39;PCT_LACCESS_SENIORS15&#39;</span>])</span>
+<span id="cb4-10"><a href="eda.html#cb4-10" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="eda.html#cb4-11" tabindex="-1"></a>data.drop(columns<span class="op">=</span>vars_drop, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb4-12"><a href="eda.html#cb4-12" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="eda.html#cb4-13" tabindex="-1"></a><span class="bu">print</span>(data.info())</span></code></pre></div>
+<pre><code>## &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+## RangeIndex: 3143 entries, 0 to 3142
+## Data columns (total 16 columns):
+##  #   Column                     Non-Null Count  Dtype  
+## ---  ------                     --------------  -----  
+##  0   FIPS                       3143 non-null   int64  
+##  1   State                      3143 non-null   object 
+##  2   County                     3143 non-null   object 
+##  3   PCH_LACCESS_POP_10_15      3117 non-null   float64
+##  4   PCH_LACCESS_LOWI_10_15     3115 non-null   float64
+##  5   PCH_LACCESS_HHNV_10_15     3129 non-null   float64
+##  6   PCT_LACCESS_SNAP15         3123 non-null   float64
+##  7   PCH_LACCESS_CHILD_10_15    3115 non-null   float64
+##  8   PCH_LACCESS_SENIORS_10_15  3117 non-null   float64
+##  9   PCT_LACCESS_WHITE15        3124 non-null   float64
+##  10  PCT_LACCESS_BLACK15        3124 non-null   float64
+##  11  PCT_LACCESS_HISP15         3124 non-null   float64
+##  12  PCT_LACCESS_NHASIAN15      3124 non-null   float64
+##  13  PCT_LACCESS_NHNA15         3124 non-null   float64
+##  14  PCT_LACCESS_NHPI15         3124 non-null   float64
+##  15  PCT_LACCESS_MULTIR15       3124 non-null   float64
+## dtypes: float64(13), int64(1), object(2)
+## memory usage: 393.0+ KB
+## None</code></pre>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-23-5.png" width="700" />
+I am going to look to see if we have any missing values</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="eda.html#cb6-1" tabindex="-1"></a><span class="co"># Check for missing values in each column</span></span>
+<span id="cb6-2"><a href="eda.html#cb6-2" tabindex="-1"></a>missing_values <span class="op">=</span> data.isnull().<span class="bu">sum</span>()</span>
+<span id="cb6-3"><a href="eda.html#cb6-3" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="eda.html#cb6-4" tabindex="-1"></a><span class="co"># Display columns with missing values</span></span>
+<span id="cb6-5"><a href="eda.html#cb6-5" tabindex="-1"></a><span class="bu">print</span>(missing_values)</span></code></pre></div>
+<pre><code>## FIPS                          0
+## State                         0
+## County                        0
+## PCH_LACCESS_POP_10_15        26
+## PCH_LACCESS_LOWI_10_15       28
+## PCH_LACCESS_HHNV_10_15       14
+## PCT_LACCESS_SNAP15           20
+## PCH_LACCESS_CHILD_10_15      28
+## PCH_LACCESS_SENIORS_10_15    26
+## PCT_LACCESS_WHITE15          19
+## PCT_LACCESS_BLACK15          19
+## PCT_LACCESS_HISP15           19
+## PCT_LACCESS_NHASIAN15        19
+## PCT_LACCESS_NHNA15           19
+## PCT_LACCESS_NHPI15           19
+## PCT_LACCESS_MULTIR15         19
+## dtype: int64</code></pre>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-24-7.png" width="700" />
+To fill the missing values, I am going to use MICE as the imputation method and
+create a binary flag that will signal to us if that observation for a specific
+column has been imputed or not. MICE is a statistical method used to fill
+missing values. Its goal is to use other variables as predictors in a
+regression model in the observation to predict what the missing value would be.</p>
+<p>It is important to note that all the ethnic categories all have 19 missing
+values. After some digging, it turns out that there are 19 counties that
+are missing this data.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="eda.html#cb8-1" tabindex="-1"></a><span class="im">from</span> sklearn.experimental <span class="im">import</span> enable_iterative_imputer</span>
+<span id="cb8-2"><a href="eda.html#cb8-2" tabindex="-1"></a><span class="im">from</span> sklearn.impute <span class="im">import</span> IterativeImputer</span>
+<span id="cb8-3"><a href="eda.html#cb8-3" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="eda.html#cb8-4" tabindex="-1"></a><span class="co"># Apply MICE imputation to numeric data</span></span>
+<span id="cb8-5"><a href="eda.html#cb8-5" tabindex="-1"></a>imputer <span class="op">=</span> IterativeImputer(max_iter<span class="op">=</span><span class="dv">10</span>, random_state<span class="op">=</span><span class="dv">22</span>)</span>
+<span id="cb8-6"><a href="eda.html#cb8-6" tabindex="-1"></a>numeric_data <span class="op">=</span> data.select_dtypes(include<span class="op">=</span>[<span class="st">&#39;float64&#39;</span>])</span>
+<span id="cb8-7"><a href="eda.html#cb8-7" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="eda.html#cb8-8" tabindex="-1"></a><span class="co"># Create a Data frame to store flags for imputed values</span></span>
+<span id="cb8-9"><a href="eda.html#cb8-9" tabindex="-1"></a>flags <span class="op">=</span> numeric_data.isnull().astype(<span class="bu">int</span>)  <span class="co"># 1 for missing, 0 for not missing</span></span>
+<span id="cb8-10"><a href="eda.html#cb8-10" tabindex="-1"></a>flags <span class="op">=</span> flags.add_suffix(<span class="st">&quot;_imputed&quot;</span>)  <span class="co"># Append &quot;_imputed&quot; to column names</span></span>
+<span id="cb8-11"><a href="eda.html#cb8-11" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="eda.html#cb8-12" tabindex="-1"></a><span class="co"># Perform imputation</span></span>
+<span id="cb8-13"><a href="eda.html#cb8-13" tabindex="-1"></a>data_imputed <span class="op">=</span> imputer.fit_transform(numeric_data)</span>
+<span id="cb8-14"><a href="eda.html#cb8-14" tabindex="-1"></a></span>
+<span id="cb8-15"><a href="eda.html#cb8-15" tabindex="-1"></a><span class="co"># Convert the imputed data back to a DataFrame</span></span>
+<span id="cb8-16"><a href="eda.html#cb8-16" tabindex="-1"></a>data_imputed_df <span class="op">=</span> pd.DataFrame(data_imputed, columns<span class="op">=</span>numeric_data.columns)</span>
+<span id="cb8-17"><a href="eda.html#cb8-17" tabindex="-1"></a></span>
+<span id="cb8-18"><a href="eda.html#cb8-18" tabindex="-1"></a><span class="co"># Extract non-numeric columns</span></span>
+<span id="cb8-19"><a href="eda.html#cb8-19" tabindex="-1"></a>non_numeric_data <span class="op">=</span> data.select_dtypes(exclude<span class="op">=</span>[<span class="st">&#39;float64&#39;</span>])</span>
+<span id="cb8-20"><a href="eda.html#cb8-20" tabindex="-1"></a></span>
+<span id="cb8-21"><a href="eda.html#cb8-21" tabindex="-1"></a><span class="co"># Concatenate the imputed numeric data, flags, and non-numeric columns</span></span>
+<span id="cb8-22"><a href="eda.html#cb8-22" tabindex="-1"></a>data <span class="op">=</span> pd.concat([non_numeric_data, data_imputed_df, flags.reset_index(drop<span class="op">=</span><span class="va">True</span>)], axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb8-23"><a href="eda.html#cb8-23" tabindex="-1"></a></span>
+<span id="cb8-24"><a href="eda.html#cb8-24" tabindex="-1"></a></span>
+<span id="cb8-25"><a href="eda.html#cb8-25" tabindex="-1"></a><span class="co"># Check for missing values to make sure the imputation worked</span></span>
+<span id="cb8-26"><a href="eda.html#cb8-26" tabindex="-1"></a>missing_values <span class="op">=</span> data.isnull().<span class="bu">sum</span>()</span>
+<span id="cb8-27"><a href="eda.html#cb8-27" tabindex="-1"></a></span>
+<span id="cb8-28"><a href="eda.html#cb8-28" tabindex="-1"></a><span class="bu">print</span>(missing_values)</span></code></pre></div>
+<pre><code>## FIPS                                 0
+## State                                0
+## County                               0
+## PCH_LACCESS_POP_10_15                0
+## PCH_LACCESS_LOWI_10_15               0
+## PCH_LACCESS_HHNV_10_15               0
+## PCT_LACCESS_SNAP15                   0
+## PCH_LACCESS_CHILD_10_15              0
+## PCH_LACCESS_SENIORS_10_15            0
+## PCT_LACCESS_WHITE15                  0
+## PCT_LACCESS_BLACK15                  0
+## PCT_LACCESS_HISP15                   0
+## PCT_LACCESS_NHASIAN15                0
+## PCT_LACCESS_NHNA15                   0
+## PCT_LACCESS_NHPI15                   0
+## PCT_LACCESS_MULTIR15                 0
+## PCH_LACCESS_POP_10_15_imputed        0
+## PCH_LACCESS_LOWI_10_15_imputed       0
+## PCH_LACCESS_HHNV_10_15_imputed       0
+## PCT_LACCESS_SNAP15_imputed           0
+## PCH_LACCESS_CHILD_10_15_imputed      0
+## PCH_LACCESS_SENIORS_10_15_imputed    0
+## PCT_LACCESS_WHITE15_imputed          0
+## PCT_LACCESS_BLACK15_imputed          0
+## PCT_LACCESS_HISP15_imputed           0
+## PCT_LACCESS_NHASIAN15_imputed        0
+## PCT_LACCESS_NHNA15_imputed           0
+## PCT_LACCESS_NHPI15_imputed           0
+## PCT_LACCESS_MULTIR15_imputed         0
+## dtype: int64</code></pre>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-25-9.png" width="700" /></p>
+<p>I am now left with 13 variables and their imputation flags that will be able to
+give me an idea on how a county is looking with their population having low
+access to stores.</p>
+<p>Next, I am going to run a correlation analysis to get an idea of any
+relationships with these variables</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="eda.html#cb10-1" tabindex="-1"></a><span class="co"># Select only numeric columns for correlation analysis</span></span>
+<span id="cb10-2"><a href="eda.html#cb10-2" tabindex="-1"></a>numeric_data <span class="op">=</span> data.select_dtypes(include<span class="op">=</span>[<span class="st">&#39;float64&#39;</span>, <span class="st">&#39;int64&#39;</span>])</span>
+<span id="cb10-3"><a href="eda.html#cb10-3" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="eda.html#cb10-4" tabindex="-1"></a><span class="co">#Create the correlation Matrix</span></span>
+<span id="cb10-5"><a href="eda.html#cb10-5" tabindex="-1"></a>correlation_matrix <span class="op">=</span> numeric_data.corr()</span>
+<span id="cb10-6"><a href="eda.html#cb10-6" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="eda.html#cb10-7" tabindex="-1"></a><span class="co"># Filter strong correlations</span></span>
+<span id="cb10-8"><a href="eda.html#cb10-8" tabindex="-1"></a>strong_correlations <span class="op">=</span> correlation_matrix.stack()</span>
+<span id="cb10-9"><a href="eda.html#cb10-9" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="eda.html#cb10-10" tabindex="-1"></a><span class="co"># Filter only values with absolute correlation &gt;= 0.7 and exclude 1 (self-correlation)</span></span>
+<span id="cb10-11"><a href="eda.html#cb10-11" tabindex="-1"></a>strong_correlations <span class="op">=</span> strong_correlations[(np.<span class="bu">abs</span>(strong_correlations) <span class="op">&gt;=</span> <span class="fl">0.7</span>) <span class="op">&amp;</span> (strong_correlations <span class="op">!=</span> <span class="dv">1</span>)]</span>
+<span id="cb10-12"><a href="eda.html#cb10-12" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="eda.html#cb10-13" tabindex="-1"></a><span class="co"># Remove duplicates (pairs like (A, B) and (B, A) are included twice)</span></span>
+<span id="cb10-14"><a href="eda.html#cb10-14" tabindex="-1"></a>strong_correlations <span class="op">=</span> strong_correlations[strong_correlations.index.get_level_values(<span class="dv">0</span>) <span class="op">&lt;</span> strong_correlations.index.get_level_values(<span class="dv">1</span>)]</span>
+<span id="cb10-15"><a href="eda.html#cb10-15" tabindex="-1"></a></span>
+<span id="cb10-16"><a href="eda.html#cb10-16" tabindex="-1"></a><span class="co"># Print the strong correlations</span></span>
+<span id="cb10-17"><a href="eda.html#cb10-17" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Strong correlations (&gt;= 0.7):&quot;</span>)</span></code></pre></div>
+<pre><code>## Strong correlations (&gt;= 0.7):</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="eda.html#cb12-1" tabindex="-1"></a><span class="bu">print</span>(strong_correlations)</span></code></pre></div>
+<pre><code>## PCH_LACCESS_POP_10_15              PCH_LACCESS_SENIORS_10_15            0.999694
+## PCH_LACCESS_LOWI_10_15             PCH_LACCESS_POP_10_15                0.999987
+##                                    PCH_LACCESS_SENIORS_10_15            0.999808
+## PCH_LACCESS_CHILD_10_15            PCH_LACCESS_POP_10_15                0.999961
+##                                    PCH_LACCESS_LOWI_10_15               0.999902
+##                                    PCH_LACCESS_SENIORS_10_15            0.999438
+## PCT_LACCESS_HISP15                 PCT_LACCESS_MULTIR15                 0.797906
+## PCH_LACCESS_POP_10_15_imputed      PCT_LACCESS_SNAP15_imputed           0.832039
+##                                    PCH_LACCESS_SENIORS_10_15_imputed    0.961218
+##                                    PCT_LACCESS_WHITE15_imputed          0.853892
+##                                    PCT_LACCESS_BLACK15_imputed          0.853892
+##                                    PCT_LACCESS_HISP15_imputed           0.853892
+##                                    PCT_LACCESS_NHASIAN15_imputed        0.853892
+##                                    PCT_LACCESS_NHNA15_imputed           0.853892
+##                                    PCT_LACCESS_NHPI15_imputed           0.853892
+##                                    PCT_LACCESS_MULTIR15_imputed         0.853892
+## PCH_LACCESS_LOWI_10_15_imputed     PCH_LACCESS_POP_10_15_imputed        0.963315
+##                                    PCT_LACCESS_SNAP15_imputed           0.844071
+##                                    PCH_LACCESS_SENIORS_10_15_imputed    0.925931
+##                                    PCT_LACCESS_WHITE15_imputed          0.822567
+##                                    PCT_LACCESS_BLACK15_imputed          0.822567
+##                                    PCT_LACCESS_HISP15_imputed           0.822567
+##                                    PCT_LACCESS_NHASIAN15_imputed        0.822567
+##                                    PCT_LACCESS_NHNA15_imputed           0.822567
+##                                    PCT_LACCESS_NHPI15_imputed           0.822567
+##                                    PCT_LACCESS_MULTIR15_imputed         0.822567
+## PCT_LACCESS_SNAP15_imputed         PCT_LACCESS_WHITE15_imputed          0.974523
+## PCH_LACCESS_CHILD_10_15_imputed    PCH_LACCESS_POP_10_15_imputed        0.963315
+##                                    PCH_LACCESS_LOWI_10_15_imputed       0.927929
+##                                    PCT_LACCESS_SNAP15_imputed           0.801488
+##                                    PCH_LACCESS_SENIORS_10_15_imputed    0.925931
+##                                    PCT_LACCESS_WHITE15_imputed          0.822567
+##                                    PCT_LACCESS_BLACK15_imputed          0.822567
+##                                    PCT_LACCESS_HISP15_imputed           0.822567
+##                                    PCT_LACCESS_NHASIAN15_imputed        0.822567
+##                                    PCT_LACCESS_NHNA15_imputed           0.822567
+##                                    PCT_LACCESS_NHPI15_imputed           0.822567
+##                                    PCT_LACCESS_MULTIR15_imputed         0.822567
+## PCH_LACCESS_SENIORS_10_15_imputed  PCT_LACCESS_SNAP15_imputed           0.832039
+##                                    PCT_LACCESS_WHITE15_imputed          0.853892
+##                                    PCT_LACCESS_BLACK15_imputed          0.853892
+##                                    PCT_LACCESS_HISP15_imputed           0.853892
+##                                    PCT_LACCESS_NHASIAN15_imputed        0.853892
+##                                    PCT_LACCESS_NHNA15_imputed           0.853892
+##                                    PCT_LACCESS_NHPI15_imputed           0.853892
+##                                    PCT_LACCESS_MULTIR15_imputed         0.853892
+## PCT_LACCESS_BLACK15_imputed        PCT_LACCESS_SNAP15_imputed           0.974523
+## PCT_LACCESS_HISP15_imputed         PCT_LACCESS_SNAP15_imputed           0.974523
+## PCT_LACCESS_NHASIAN15_imputed      PCT_LACCESS_SNAP15_imputed           0.974523
+## PCT_LACCESS_NHNA15_imputed         PCT_LACCESS_SNAP15_imputed           0.974523
+## PCT_LACCESS_NHPI15_imputed         PCT_LACCESS_SNAP15_imputed           0.974523
+## PCT_LACCESS_MULTIR15_imputed       PCT_LACCESS_SNAP15_imputed           0.974523
+## dtype: float64</code></pre>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-26-11.png" width="700" /></p>
+<p>PCH_LACCESS_CHILD_10_15, PCH_LACCESS_LOWI_10_15, and PCH_LACCESS_SENIORS_10_15
+are perfectly correlated with PCH_LACCESS_POP_10_15. This lets me know that
+I can drop out PCH_LACCESS_CHILD_10_15, PCH_LACCESS_SENIORS_10_15, and
+PCH_LACCESS_LOWI_10_15 due to PCH_LACCESS_POP_10_15 being able to give me
+the same signal.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="eda.html#cb14-1" tabindex="-1"></a>data.drop(columns<span class="op">=</span>[<span class="st">&#39;PCH_LACCESS_CHILD_10_15&#39;</span>,<span class="st">&#39;PCH_LACCESS_SENIORS_10_15&#39;</span>,</span>
+<span id="cb14-2"><a href="eda.html#cb14-2" tabindex="-1"></a><span class="st">&#39;PCH_LACCESS_LOWI_10_15&#39;</span>,<span class="st">&#39;PCH_LACCESS_CHILD_10_15_imputed&#39;</span>,</span>
+<span id="cb14-3"><a href="eda.html#cb14-3" tabindex="-1"></a><span class="st">&#39;PCH_LACCESS_SENIORS_10_15_imputed&#39;</span>,<span class="st">&#39;PCH_LACCESS_LOWI_10_15_imputed&#39;</span>],</span>
+<span id="cb14-4"><a href="eda.html#cb14-4" tabindex="-1"></a>inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb14-5"><a href="eda.html#cb14-5" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="eda.html#cb14-6" tabindex="-1"></a><span class="bu">print</span>(data.info())</span></code></pre></div>
+<pre><code>## &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+## RangeIndex: 3143 entries, 0 to 3142
+## Data columns (total 23 columns):
+##  #   Column                          Non-Null Count  Dtype  
+## ---  ------                          --------------  -----  
+##  0   FIPS                            3143 non-null   int64  
+##  1   State                           3143 non-null   object 
+##  2   County                          3143 non-null   object 
+##  3   PCH_LACCESS_POP_10_15           3143 non-null   float64
+##  4   PCH_LACCESS_HHNV_10_15          3143 non-null   float64
+##  5   PCT_LACCESS_SNAP15              3143 non-null   float64
+##  6   PCT_LACCESS_WHITE15             3143 non-null   float64
+##  7   PCT_LACCESS_BLACK15             3143 non-null   float64
+##  8   PCT_LACCESS_HISP15              3143 non-null   float64
+##  9   PCT_LACCESS_NHASIAN15           3143 non-null   float64
+##  10  PCT_LACCESS_NHNA15              3143 non-null   float64
+##  11  PCT_LACCESS_NHPI15              3143 non-null   float64
+##  12  PCT_LACCESS_MULTIR15            3143 non-null   float64
+##  13  PCH_LACCESS_POP_10_15_imputed   3143 non-null   int64  
+##  14  PCH_LACCESS_HHNV_10_15_imputed  3143 non-null   int64  
+##  15  PCT_LACCESS_SNAP15_imputed      3143 non-null   int64  
+##  16  PCT_LACCESS_WHITE15_imputed     3143 non-null   int64  
+##  17  PCT_LACCESS_BLACK15_imputed     3143 non-null   int64  
+##  18  PCT_LACCESS_HISP15_imputed      3143 non-null   int64  
+##  19  PCT_LACCESS_NHASIAN15_imputed   3143 non-null   int64  
+##  20  PCT_LACCESS_NHNA15_imputed      3143 non-null   int64  
+##  21  PCT_LACCESS_NHPI15_imputed      3143 non-null   int64  
+##  22  PCT_LACCESS_MULTIR15_imputed    3143 non-null   int64  
+## dtypes: float64(10), int64(11), object(2)
+## memory usage: 564.9+ KB
+## None</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="eda.html#cb16-1" tabindex="-1"></a></span>
+<span id="cb16-2"><a href="eda.html#cb16-2" tabindex="-1"></a>data.to_csv(<span class="st">&#39;clustering_data.csv&#39;</span>,index <span class="op">=</span> <span class="va">False</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-27-13.png" width="700" /></p>
+<p>The other interesting finding from the correlation analysis was
+PCT_LACCESS_HISP15 and PCT_LACCESS_MULTIR15 having a correlation of 0.8. This
+tells me that percentage of Hispanic ethnicity who have low access to stores
+and Multiracial who have low access to stores are linked together. As one of the
+groups increase in the percentage of people who have low access to stores, the
+other group goes up as well.</p>
+<p>Moving forward, I will use principal component analysis to reduce dimensionality
+and then perform either the k-means clustering algorithm or the DBSCAN algorithm
+depending on if the data is spatially grouped together or not.</p>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="clustering.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/Arayk22/n1technical_assessment.git/EDA.qmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/Arayk22/n1technical_assessment.git/EDA.qmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
