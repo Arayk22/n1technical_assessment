@@ -75,38 +75,43 @@ for column in float_columns:
 ```
 
 From these graphs, there are a few key insights that should be recognized:
-1. In the PCH_LACCESS_POP_10_15 graph, there is a huge increase in the 
-  percentage of the population that have low access to stores in the second
-  group of counties. After some digging, there are 5 counties in this group.
-  4 of them are in Hawaii and the other one is in Alaska. If N1 has the
-  resources, these 5 counties would be great candidates for N1 to help with
-  food access challenges.
+
+First Insight:
+
+In the PCH_LACCESS_POP_10_15 graph, there is a huge increase in the 
+percentage of the population that have low access to stores in the second
+group of counties. After some digging, there are 5 counties in this group.
+4 of them are in Hawaii and the other one is in Alaska. If N1 has the
+resources, these 5 counties would be great candidates for N1 to help with
+food access challenges.
   
-  The second insight from this graph is the increase in group 8. This is a
-  smaller group of counties that are seeing an increase in the percentage
-  of the population that is struggling to get food access. These counties are
-  also ideal candidates for N1 to utilize its resources to aid in people getting
-  better access to food.
+The second insight from this graph is the increase in group 8. This is a
+smaller group of counties that are seeing an increase in the percentage
+of the population that is struggling to get food access. These counties are
+also ideal candidates for N1 to utilize its resources to aid in people getting
+better access to food.
   
-  Utilizing the graph that shows the distribution of the Black population across
-  the groups, we see that the majority of this group is within the counties
-  in group 8. If N1 uses it resources to help these communities with
-  increasing access to food, they should expect the majority of these
-  populations to be Black. This knowledge will help N1 tailor their
-  programs to these communities.
-  
-2. In the PCH_LACCESS_HHNV_10_15 graph, we see group 9 has the biggest
-  percentage of people that have low access to food and don't have access to
-  a car. This is vital information if N1 decides to deploy its resources
-  to these communities. When creating a program to increase the access to food,
-  N1 should consider having a option where they help deliver food to households
-  or setting up food pantries within walking distances in these communities to 
-  give them better access to food.
-  
-  Looking into the White, Hispanic, and Multiracial graphs, we see see these 
-  ethnic groups strongly represent group 9. If N1 decides to deploy resources
-  to help these communities, they should expect these populations to be White,
-  Hispanic, or Multiracial. 
+Utilizing the graph that shows the distribution of the Black population across
+the groups, we see that the majority of this group is within the counties
+in group 8. If N1 uses it resources to help these communities with
+increasing access to food, they should expect the majority of these
+populations to be Black. This knowledge will help N1 tailor their
+programs to these communities.
+
+Second Insight:
+
+In the PCH_LACCESS_HHNV_10_15 graph, we see group 9 has the biggest
+percentage of people that have low access to food and don't have access to
+a car. This is vital information if N1 decides to deploy its resources
+to these communities. When creating a program to increase the access to food,
+N1 should consider having a option where they help deliver food to households
+or setting up food pantries within walking distances in these communities to 
+give them better access to food.
+
+Looking into the White, Hispanic, and Multiracial graphs, we see see these 
+ethnic groups strongly represent group 9. If N1 decides to deploy resources
+to help these communities, they should expect these populations to be White,
+Hispanic, or Multiracial. 
 
 
 Lastly, I am going to recreate the graphs I mentioned above to get them looking
