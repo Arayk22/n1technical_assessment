@@ -6,7 +6,7 @@ output: bookdown::html_document2
 
 Lets bring our data in for analysis.
 
-```{python}
+```{python clustering import}
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -23,7 +23,7 @@ this is to reduce the number of dimensions in our data which will hopefully
 make it easier for a clustering algorithm to perform quicker and more
 accurately.
 
-```{python}
+```{python clustering pca}
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
 import numpy as np
@@ -46,7 +46,7 @@ We can use the first 6 PCA components to cluster together similar counties!
 
 Now lets look at the most important variables in each of the 6 components.
 
-```{python}
+```{python clustering important pca}
 # Access the loadings (coefficients) of each variable for each of the principal
 # components
 loadings = pca.components_
@@ -74,7 +74,7 @@ is to see if the data points are spatially placed on the graph. If they are, I
 will move forward with the DBSCAN algorithm and if they aren't, I will move
 forward with the k-means algorithm.
 
-```{python}
+```{python clustering pca graph}
 # Create a DataFrame for the first two principal components
 pc_df = pd.DataFrame(principal_components[:, :2], columns=["PC1", "PC2"])
 
@@ -96,7 +96,7 @@ counties.
 Before creating the k-means clusters, I am going to create an elbow plot to
 find the optimal number of clusters I should use.
 
-```{python}
+```{python clustering elbow}
 from sklearn.cluster import KMeans
 
 # Define the range of number of clusters to try
@@ -129,7 +129,7 @@ Looking at the elbow plot, the optimal number of clusters moving forward is 10.
 Now lets run the k-means algorithm with 10 clusters and put the cluster labels
 back onto the original data frame.
 
-```{python}
+```{python clustering k means}
 # Run K-means with 10 clusters
 kmeans = KMeans(n_clusters=10, random_state=22)
 kmeans.fit(pca_results)  # Use the PCA results for clustering
@@ -143,6 +143,6 @@ pca_results["Cluster Labels"] = cluster_labels
 data["Cluster Labels"] = cluster_labels
 ```
 
-```{python}
+```{python results prep}
 data.to_csv('clustering_results.csv',index=False)
 ```

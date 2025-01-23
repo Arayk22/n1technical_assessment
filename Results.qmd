@@ -4,7 +4,7 @@ output: bookdown::html_document2
 
 # Results
 
-```{python}
+```{python results import}
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
@@ -15,7 +15,7 @@ data = pd.read_csv(r"C:\Project for IAA\N1\clustering_results.csv")
 Now we can look at the variables in the data to see what the different clusters
 look like.
 
-```{python}
+```{python results count}
 # Count how many unique counties are in each Cluster Label
 county_counts = data.groupby('Cluster Labels')['County'].nunique()
 
@@ -38,7 +38,7 @@ Here we see a raw count for how many counties are in each cluster group.
 The majority of the counties are in cluster 6. This can be expected due to the
 counties being tightly packed when we did our cluster analysis.
 
-```{python}
+```{python results var graphs}
 #These two counties have seen huge increases in low access to stores. Since this
 #would be a place recommended for N1 to deploy its resources, I subset the
 #daa to exclude them from the data. This will even out the skewness in a 
@@ -114,7 +114,7 @@ nicer and presentation quality.
 
 PCH_LACESS_HHNV_10_15 Plot
 
-```{python}
+```{python results graph one}
 # Plot for PCH_LACCESS_HHNV_10_15
 plt.figure(figsize=(10, 6))
 
@@ -146,7 +146,7 @@ plt.clf()
 
 PCH_LACCESS_POP_10_15 Plot
 
-```{python}
+```{python results graph two}
 # Plot for PCH_LACESS_HHNV_10_15
 plt.figure(figsize=(10, 6))
 
@@ -178,7 +178,7 @@ plt.clf()
 
 I am going to save the data so I can upload it into Tableau.
 
-```{python}
+```{python results save}
 data.to_csv('data_tableau.csv',index=False)
 ```
 

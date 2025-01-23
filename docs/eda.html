@@ -183,7 +183,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-15"><a href="eda.html#cb1-15" tabindex="-1"></a></span>
 <span id="cb1-16"><a href="eda.html#cb1-16" tabindex="-1"></a></span>
 <span id="cb1-17"><a href="eda.html#cb1-17" tabindex="-1"></a>connection.close()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-21-1.png" width="700" /></p>
 <p>I am going to look through the data and get an understanding for how it is
 structured and what analysis can be performed.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="eda.html#cb2-1" tabindex="-1"></a><span class="bu">print</span>(data.info())</span></code></pre></div>
@@ -240,7 +239,6 @@ structured and what analysis can be performed.</p>
 ## dtypes: float64(41), int64(2), object(2)
 ## memory usage: 1.1+ MB
 ## None</code></pre>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-22-3.png" width="700" /></p>
 <p>There seems to be two types of variables, raw count and percentages. I am going
 to drop out raw counts because we are going to want to see how percentages
 of populations vary across the US. This will put all of the counties onto the
@@ -287,8 +285,7 @@ time.</p>
 ## dtypes: float64(13), int64(1), object(2)
 ## memory usage: 393.0+ KB
 ## None</code></pre>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-23-5.png" width="700" />
-I am going to look to see if we have any missing values</p>
+<p>I am going to look to see if we have any missing values</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="eda.html#cb6-1" tabindex="-1"></a><span class="co"># Check for missing values in each column</span></span>
 <span id="cb6-2"><a href="eda.html#cb6-2" tabindex="-1"></a>missing_values <span class="op">=</span> data.isnull().<span class="bu">sum</span>()</span>
 <span id="cb6-3"><a href="eda.html#cb6-3" tabindex="-1"></a></span>
@@ -311,8 +308,7 @@ I am going to look to see if we have any missing values</p>
 ## PCT_LACCESS_NHPI15           19
 ## PCT_LACCESS_MULTIR15         19
 ## dtype: int64</code></pre>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-24-7.png" width="700" />
-To fill the missing values, I am going to use MICE as the imputation method and
+<p>To fill the missing values, I am going to use MICE as the imputation method and
 create a binary flag that will signal to us if that observation for a specific
 column has been imputed or not. MICE is a statistical method used to fill
 missing values. Its goal is to use other variables as predictors in a
@@ -378,7 +374,6 @@ are missing this data.</p>
 ## PCT_LACCESS_NHPI15_imputed           0
 ## PCT_LACCESS_MULTIR15_imputed         0
 ## dtype: int64</code></pre>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-25-9.png" width="700" /></p>
 <p>I am now left with 13 variables and their imputation flags that will be able to
 give me an idea on how a county is looking with their population having low
 access to stores.</p>
@@ -456,7 +451,6 @@ relationships with these variables</p>
 ## PCT_LACCESS_NHPI15_imputed         PCT_LACCESS_SNAP15_imputed           0.974523
 ## PCT_LACCESS_MULTIR15_imputed       PCT_LACCESS_SNAP15_imputed           0.974523
 ## dtype: float64</code></pre>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-26-11.png" width="700" /></p>
 <p>PCH_LACCESS_CHILD_10_15, PCH_LACCESS_LOWI_10_15, and PCH_LACCESS_SENIORS_10_15
 are perfectly correlated with PCH_LACCESS_POP_10_15. This lets me know that
 I can drop out PCH_LACCESS_CHILD_10_15, PCH_LACCESS_SENIORS_10_15, and
@@ -501,7 +495,6 @@ the same signal.</p>
 ## None</code></pre>
 <div class="sourceCode" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="eda.html#cb16-1" tabindex="-1"></a></span>
 <span id="cb16-2"><a href="eda.html#cb16-2" tabindex="-1"></a>data.to_csv(<span class="st">&#39;clustering_data.csv&#39;</span>,index <span class="op">=</span> <span class="va">False</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-27-13.png" width="700" /></p>
 <p>The other interesting finding from the correlation analysis was
 PCT_LACCESS_HISP15 and PCT_LACCESS_MULTIR15 having a correlation of 0.8. This
 tells me that percentage of Hispanic ethnicity who have low access to stores

@@ -6,7 +6,7 @@ output: bookdown::html_document2
 
 Lets bring in the data to get a sense for what we are working with.
 
-```{python}
+```{python import}
 import sqlite3
 import pandas as pd
 import seaborn as sns
@@ -29,7 +29,7 @@ connection.close()
 I am going to look through the data and get an understanding for how it is
 structured and what analysis can be performed.
 
-```{python}
+```{python eda info}
 print(data.info())
 ```
 
@@ -44,7 +44,7 @@ out the single 2010 and 2015 years because I am more interested in the relative
 change. This will give me a sense for how that specific area has changed over
 time.
 
-```{python}
+```{python eda drop}
 #Change the LACCESS_CHILD_10_15 variable to keep up with the other names
 data.rename(columns={'LACCESS_CHILD_10_15': 'PCH_LACCESS_CHILD_10_15'}, inplace=True)
 
@@ -61,7 +61,7 @@ print(data.info())
 ```
 I am going to look to see if we have any missing values
 
-```{python}
+```{python eda na}
 # Check for missing values in each column
 missing_values = data.isnull().sum()
 
@@ -78,7 +78,7 @@ It is important to note that all the ethnic categories all have 19 missing
 values. After some digging, it turns out that there are 19 counties that
 are missing this data.
 
-```{python}
+```{python eda impute}
 from sklearn.experimental import enable_iterative_imputer
 from sklearn.impute import IterativeImputer
 
@@ -116,7 +116,7 @@ access to stores.
 Next, I am going to run a correlation analysis to get an idea of any 
 relationships with these variables
 
-```{python}
+```{python eda corr}
 # Select only numeric columns for correlation analysis
 numeric_data = data.select_dtypes(include=['float64', 'int64'])
 
@@ -143,7 +143,7 @@ I can drop out PCH_LACCESS_CHILD_10_15, PCH_LACCESS_SENIORS_10_15, and
 PCH_LACCESS_LOWI_10_15 due to PCH_LACCESS_POP_10_15 being able to give me 
 the same signal.
 
-```{python}
+```{python eda cluster prep}
 data.drop(columns=['PCH_LACCESS_CHILD_10_15','PCH_LACCESS_SENIORS_10_15',
 'PCH_LACCESS_LOWI_10_15','PCH_LACCESS_CHILD_10_15_imputed',
 'PCH_LACCESS_SENIORS_10_15_imputed','PCH_LACCESS_LOWI_10_15_imputed'],
